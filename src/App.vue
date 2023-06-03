@@ -2,17 +2,21 @@
     <div class="website">
         <main>
             <StepIndicator/>
-            <!-- steps here -->
+            <div class="temp-class">
+                <StepsContainer title="title" description="bla bla bla"/>
+            </div>
         </main>
     </div>
 </template>
 
 <script>
 import StepIndicator from "@/components/StepIndicator.vue";
+import StepsContainer from "@/components/StepsContainer.vue";
 
 export default {
     name: 'App',
     components: {
+        StepsContainer,
         StepIndicator
     }
 }
@@ -34,9 +38,15 @@ export default {
         padding: 20px;
         width: 900px;
         border-radius: 14px;
-        height: 600px;
+        height: 610px;
         display: grid;
         grid-template-columns: 274px auto;
+
+        .temp-class {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     }
 }
 </style>
