@@ -5,9 +5,10 @@
             <p>{{ description}}</p>
         </div>
         <slot />
-        <div class="next-prev-buttons">
-            <button class="prev">Go back</button>
-            <button class="next">Next Step</button>
+        <div class="next-prev-buttons" :class="{'first-step': currentStep === 1}">
+            <button class="prev" v-show="currentStep !== 1" @click="updateStep(currentStep - 1)">Go back</button>
+            <button class="next" @click="updateStep(currentStep + 1)"
+                    :class="{'last-step': currentStep === 4}">{{ nextButtonName }}</button>
         </div>
     </div>
 </template>
@@ -23,6 +24,20 @@ export default {
         description: {
             type: String,
             default: ""
+        },
+        currentStep: {
+            type: Number,
+            default: null
+        }
+    },
+    computed: {
+        nextButtonName() {
+            return this.currentStep === 4 ? 'Confirm' : 'Next Step'
+        }
+    },
+    methods: {
+        updateStep(value) {
+            if (value > 1 && value < 6) this.$emit('update:currentStep', value)
         }
     }
 }
@@ -57,6 +72,10 @@ export default {
         align-items: center;
         justify-content: space-between;
 
+        &.first-step {
+            justify-content: right;
+        }
+
         .prev {
             color: #9B9BA3;
             background-color: #FFFFFF;
@@ -71,6 +90,10 @@ export default {
             border-radius: 6px;
             font-family: ubuntu-medium, sans-serif;
             font-size: 16px;
+
+            &.last-step {
+                background-color: #483EFF;
+            }
         }
     }
 }
