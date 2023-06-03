@@ -1,19 +1,19 @@
 <template>
     <div class="website">
         <main>
-            <StepsContainer/>
+            <StepIndicator/>
             <!-- steps here -->
         </main>
     </div>
 </template>
 
 <script>
-import StepsContainer from "@/components/StepsContainer.vue";
+import StepIndicator from "@/components/StepIndicator.vue";
 
 export default {
     name: 'App',
     components: {
-        StepsContainer
+        StepIndicator
     }
 }
 </script>

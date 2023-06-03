@@ -14,7 +14,7 @@
 
 <script>
 export default {
-    name: "StepsContainer",
+    name: "StepIndicator",
     data() {
         return {
             steps: [
