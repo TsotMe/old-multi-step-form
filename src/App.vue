@@ -3,7 +3,7 @@
         <main>
             <StepIndicator :currentStep="currentStep" />
             <div class="temp-class">
-                <StepsContainer :title="stepData.title" :description="stepData.description" :currentStep="currentStep" />
+                <StepsContainer :title="stepData.title" :description="stepData.description" v-model:currentStep="currentStep" />
             </div>
         </main>
     </div>
@@ -26,7 +26,10 @@ export default {
                 {title: "Personal info", description: "Please provide your name, email address, and phone number."},
                 {title: "Select your plan", description: "you have the option to monthly or yearly billing."},
                 {title: "Pick add-ons", description: "Add-ons help enhance your gaming experience."},
-                {title: "Finishing up", description: "Double-check everything looks OK before confirming."}
+                {title: "Finishing up", description: "Double-check everything looks OK before confirming."},
+                {title: "Thank you!", description:
+                        "Thanks for confirming your subscription! we hope you have fun using our platform. " +
+                        "if you ever need support, please feel free to email us at support@loremGaming.com"}
             ]
         }
     },
