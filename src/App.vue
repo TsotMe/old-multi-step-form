@@ -1,9 +1,9 @@
 <template>
     <div class="website">
         <main>
-            <StepIndicator/>
+            <StepIndicator :currentStep="currentStep" />
             <div class="temp-class">
-                <StepsContainer :title="stepData.title" :description="stepData.description"/>
+                <StepsContainer :title="stepData.title" :description="stepData.description" />
             </div>
         </main>
     </div>
