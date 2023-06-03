@@ -1,5 +1,5 @@
 <template>
-    <div class="steps-container">
+    <div class="steps-indicator">
         <div class="step" v-for="step in steps" :key="step.id">
             <div class="step-id">
                 {{ step.id }}
@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.steps-container {
+.steps-indicator {
     height: 100%;
     background-image: url("../assets/images/bg-sidebar-desktop.svg");
     background-repeat: no-repeat;
