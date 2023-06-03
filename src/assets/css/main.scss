@@ -29,8 +29,11 @@ body {
 }
 
 button {
-  cursor: pointer;
   border: none;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
 }
 
 input:focus, textarea:focus {
