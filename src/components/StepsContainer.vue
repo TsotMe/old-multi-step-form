@@ -33,7 +33,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 400px;
+    width: 450px;
     height: 510px;
 
     .next-prev-buttons {
