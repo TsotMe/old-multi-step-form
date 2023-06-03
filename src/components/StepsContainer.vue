@@ -36,6 +36,20 @@ export default {
     width: 450px;
     height: 510px;
 
+    .step-head {
+        h2 {
+            font-family: ubuntu-medium, sans-serif;
+            letter-spacing: 1px;
+            font-size: 26px;
+            color: #00194F;
+            margin-bottom: 10px;
+        }
+
+         p {
+             color: #8F9094;
+         }
+    }
+
     .next-prev-buttons {
         display: flex;
         align-items: center;
