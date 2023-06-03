@@ -1,6 +1,6 @@
 <template>
     <div class="steps-indicator">
-        <div class="step" v-for="step in steps" :key="step.id">
+        <div class="step" v-for="step in steps" :key="step.id" :class="{'active-step': step.id === currentStep}">
             <div class="step-id">
                 {{ step.id }}
             </div>
@@ -15,6 +15,12 @@
 <script>
 export default {
     name: "StepIndicator",
+    props: {
+        currentStep: {
+            type: Number,
+            default: null
+        }
+    },
     data() {
         return {
             steps: [
@@ -42,6 +48,13 @@ export default {
         align-items: center;
         gap: 15px;
         margin-bottom: 30px;
+
+        &.active-step {
+            .step-id {
+                background-color: #BEE1FD;
+                color: #0E2F5C;
+            }
+        }
 
         &:last-child {
             margin-bottom: 0;
