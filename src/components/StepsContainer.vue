@@ -1,11 +1,12 @@
 <template>
     <div class="steps-container">
-        <div class="step-head">
+        <div class="step-head" :class="{'last-step': currentStep === 5}">
+            <img src="../assets/images/icon-thank-you.svg" v-if="currentStep === 5" alt="">
             <h2>{{ title }}</h2>
             <p>{{ description}}</p>
         </div>
         <slot />
-        <div class="next-prev-buttons" :class="{'first-step': currentStep === 1}">
+        <div class="next-prev-buttons" v-if="currentStep !== 5" :class="{'first-step': currentStep === 1}">
             <button class="prev" v-show="currentStep !== 1" @click="updateStep(currentStep - 1)">Go back</button>
             <button class="next" @click="updateStep(currentStep + 1)"
                     :class="{'last-step': currentStep === 4}">{{ nextButtonName }}</button>
@@ -37,7 +38,7 @@ export default {
     },
     methods: {
         updateStep(value) {
-            if (value > 1 && value < 6) this.$emit('update:currentStep', value)
+            if (value > 0 && value < 6) this.$emit('update:currentStep', value)
         }
     }
 }
@@ -53,6 +54,29 @@ export default {
 
     .step-head {
         margin-bottom: 30px;
+
+        &.last-step {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            img {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 30px;
+            }
+
+            h2 {
+                margin-bottom: 15px;
+            }
+
+            p {
+                text-align: center;
+                line-height: 24px;
+            }
+        }
 
         h2 {
             font-family: ubuntu-medium, sans-serif;
