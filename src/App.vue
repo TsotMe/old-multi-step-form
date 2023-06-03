@@ -3,7 +3,7 @@
         <main>
             <StepIndicator :currentStep="currentStep" />
             <div class="temp-class">
-                <StepsContainer :title="stepData.title" :description="stepData.description" />
+                <StepsContainer :title="stepData.title" :description="stepData.description" :currentStep="currentStep" />
             </div>
         </main>
     </div>
