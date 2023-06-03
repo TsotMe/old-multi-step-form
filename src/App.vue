@@ -1,16 +1,22 @@
-<script setup>
-import StepsContainer from "@/components/StepsContainer.vue";
-
-</script>
-
 <template>
     <div class="website">
         <main>
-            <StepsContainer />
+            <StepsContainer/>
             <!-- steps here -->
         </main>
     </div>
 </template>
+
+<script>
+import StepsContainer from "@/components/StepsContainer.vue";
+
+export default {
+    name: 'App',
+    components: {
+        StepsContainer
+    }
+}
+</script>
 
 <style lang="scss" scoped>
 @import './assets/css/variables.scss';
