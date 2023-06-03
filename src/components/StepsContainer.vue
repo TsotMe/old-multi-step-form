@@ -37,6 +37,8 @@ export default {
     height: 510px;
 
     .step-head {
+        margin-bottom: 30px;
+
         h2 {
             font-family: ubuntu-medium, sans-serif;
             letter-spacing: 1px;
