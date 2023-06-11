@@ -13,19 +13,19 @@ export default {
     name: "CustomInput",
     props: {
         labelText: {
-            type: Text,
+            type: String,
             default: ''
         },
         errorText: {
-            type: Text,
+            type: String,
             default: ''
         },
         placeholderText: {
-            type: Text,
+            type: String,
             default: ''
         },
         type: {
-            type: Text,
+            type: String,
             default: ''
         }
     }
