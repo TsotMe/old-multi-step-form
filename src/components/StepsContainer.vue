@@ -9,8 +9,8 @@
             <Component :is="stepComponent" />
         </keep-alive>
         <div class="next-prev-buttons" v-if="currentStep !== 5" :class="{'first-step': currentStep === 1}">
-            <button class="prev" v-show="currentStep !== 1" @click="updateStep(currentStep - 1)">Go back</button>
-            <button class="next" @click="updateStep(currentStep + 1)"
+            <button class="prev" v-show="currentStep !== 1" @click="handlePrevButtonCLick(currentStep - 1)">Go back</button>
+            <button class="next" @click="handleNextButtonCLick(currentStep + 1)"
                     :class="{'last-step': currentStep === 4}">{{ nextButtonName }}</button>
         </div>
     </div>
@@ -18,6 +18,8 @@
 
 <script>
 import StepOne from "@/components/forms/StepOne.vue";
+import { useStepOneStore } from "@/stores/StepOneStore";
+
 export default {
     name: "StepsContainer",
     components: { StepOne },
@@ -35,6 +37,10 @@ export default {
             default: null
         }
     },
+    setup() {
+        const stepOneStore = useStepOneStore()
+        return { stepOneStore }
+    },
     computed: {
         nextButtonName() {
             return this.currentStep === 4 ? 'Confirm' : 'Next Step'
@@ -45,8 +51,24 @@ export default {
         }
     },
     methods: {
-        updateStep(value) {
-            if (value > 0 && value < 6) this.$emit('update:currentStep', value)
+        handlePrevButtonCLick(value) {
+            if (value > 0) this.$emit('update:currentStep', value)
+        },
+        handleNextButtonCLick(value) {
+            const {name, email, phone_number} = this.stepOneStore.data
+
+            if (value === 2) {
+                if (value < 6 && name && email && phone_number) {
+                    return this.$emit('update:currentStep', value)
+                }
+
+                const errorData = {
+                    name: !name ? "This field is required" : '',
+                    email: !email ? "This field is required" : '',
+                    phone_number: !phone_number ? "This field is required" : '',
+                }
+                return this.stepOneStore.updateError(errorData)
+            }
         }
     }
 }
