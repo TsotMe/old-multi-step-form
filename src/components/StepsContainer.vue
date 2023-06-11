@@ -56,16 +56,19 @@ export default {
         },
         handleNextButtonCLick(value) {
             const {name, email, phone_number} = this.stepOneStore.data
-            if (value < 6 && name && email && phone_number) {
-                return this.$emit('update:currentStep', value)
-            }
 
-            const errorData = {
-                name: !name ? "This field is required" : '',
-                email: !email ? "This field is required" : '',
-                phone_number: !phone_number ? "This field is required" : '',
+            if (value === 2) {
+                if (value < 6 && name && email && phone_number) {
+                    return this.$emit('update:currentStep', value)
+                }
+
+                const errorData = {
+                    name: !name ? "This field is required" : '',
+                    email: !email ? "This field is required" : '',
+                    phone_number: !phone_number ? "This field is required" : '',
+                }
+                return this.stepOneStore.updateError(errorData)
             }
-            this.stepOneStore.updateError(errorData)
         }
     }
 }
