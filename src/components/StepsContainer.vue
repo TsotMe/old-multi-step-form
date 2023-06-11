@@ -61,7 +61,7 @@ export default {
     height: 510px;
 
     .step-head {
-        margin-bottom: 30px;
+        margin-bottom: 45px;
 
         &.last-step {
             height: 100%;
