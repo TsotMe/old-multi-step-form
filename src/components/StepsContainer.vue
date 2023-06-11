@@ -5,7 +5,9 @@
             <h2>{{ title }}</h2>
             <p>{{ description}}</p>
         </div>
-        <slot />
+        <keep-alive>
+            <Component :is="stepComponent" />
+        </keep-alive>
         <div class="next-prev-buttons" v-if="currentStep !== 5" :class="{'first-step': currentStep === 1}">
             <button class="prev" v-show="currentStep !== 1" @click="updateStep(currentStep - 1)">Go back</button>
             <button class="next" @click="updateStep(currentStep + 1)"
@@ -15,8 +17,10 @@
 </template>
 
 <script>
+import StepOne from "@/components/forms/StepOne.vue";
 export default {
     name: "StepsContainer",
+    components: { StepOne },
     props: {
         title: {
             type: String,
@@ -34,6 +38,10 @@ export default {
     computed: {
         nextButtonName() {
             return this.currentStep === 4 ? 'Confirm' : 'Next Step'
+        },
+        stepComponent() {
+            return this.currentStep === 1 ? 'StepOne' : this.currentStep === 2 ? 'StepTwo' :
+                this.currentStep === 3 ? 'StepThree' : 'StepFour'
         }
     },
     methods: {
@@ -53,7 +61,7 @@ export default {
     height: 510px;
 
     .step-head {
-        margin-bottom: 30px;
+        margin-bottom: 45px;
 
         &.last-step {
             height: 100%;
