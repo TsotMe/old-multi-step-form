@@ -9,8 +9,8 @@
             <Component :is="stepComponent" />
         </keep-alive>
         <div class="next-prev-buttons" v-if="currentStep !== 5" :class="{'first-step': currentStep === 1}">
-            <button class="prev" v-show="currentStep !== 1" @click="updateStep(currentStep - 1)">Go back</button>
-            <button class="next" @click="updateStep(currentStep + 1)"
+            <button class="prev" v-show="currentStep !== 1" @click="handlePrevButtonCLick(currentStep - 1)">Go back</button>
+            <button class="next" @click="handleNextButtonCLick(currentStep + 1)"
                     :class="{'last-step': currentStep === 4}">{{ nextButtonName }}</button>
         </div>
     </div>
@@ -45,8 +45,11 @@ export default {
         }
     },
     methods: {
-        updateStep(value) {
-            if (value > 0 && value < 6) this.$emit('update:currentStep', value)
+        handlePrevButtonCLick(value) {
+            if (value > 0) this.$emit('update:currentStep', value)
+        },
+        handleNextButtonCLick(value) {
+            if (value < 6) this.$emit('update:currentStep', value)
         }
     }
 }
