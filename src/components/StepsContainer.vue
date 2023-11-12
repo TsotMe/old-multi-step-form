@@ -1,28 +1,30 @@
 <template>
-    <div class="steps-container">
-        <div class="step-head" :class="{'last-step': currentStep === 5}">
-            <img src="../assets/images/icon-thank-you.svg" v-if="currentStep === 5" alt="">
-            <h2>{{ title }}</h2>
-            <p>{{ description}}</p>
-        </div>
-        <keep-alive>
-            <Component :is="stepComponent" />
-        </keep-alive>
-        <div class="next-prev-buttons" v-if="currentStep !== 5" :class="{'first-step': currentStep === 1}">
-            <button class="prev" v-show="currentStep !== 1" @click="handlePrevButtonCLick(currentStep - 1)">Go back</button>
-            <button class="next" @click="handleNextButtonCLick(currentStep + 1)"
-                    :class="{'last-step': currentStep === 4}">{{ nextButtonName }}</button>
-        </div>
+<div class="steps-container">
+    <div class="step-head" :class="{'last-step': currentStep === 5}">
+        <img src="../assets/images/icon-thank-you.svg" v-if="currentStep === 5" alt="">
+        <h2>{{ title }}</h2>
+        <p>{{ description }}</p>
     </div>
+    <keep-alive>
+        <Component :is="stepComponent"/>
+    </keep-alive>
+    <div class="next-prev-buttons" v-if="currentStep !== 5" :class="{'first-step': currentStep === 1}">
+        <button class="prev" v-show="currentStep !== 1" @click="handlePrevButtonCLick(currentStep - 1)">Go back</button>
+        <button class="next" @click="handleNextButtonCLick(currentStep + 1)"
+                :class="{'last-step': currentStep === 4}">{{ nextButtonName }}
+        </button>
+    </div>
+</div>
 </template>
 
 <script>
+import {useStepOneStore} from "@/stores/StepOneStore";
 import StepOne from "@/components/forms/StepOne.vue";
-import { useStepOneStore } from "@/stores/StepOneStore";
+import StepTwo from "@/components/forms/StepTwo.vue";
 
 export default {
     name: "StepsContainer",
-    components: { StepOne },
+    components: {StepTwo, StepOne},
     props: {
         title: {
             type: String,
@@ -39,7 +41,7 @@ export default {
     },
     setup() {
         const stepOneStore = useStepOneStore()
-        return { stepOneStore }
+        return {stepOneStore}
     },
     computed: {
         nextButtonName() {
@@ -116,9 +118,9 @@ export default {
             margin-bottom: 10px;
         }
 
-         p {
-             color: #8F9094;
-         }
+        p {
+            color: #8F9094;
+        }
     }
 
     .next-prev-buttons {
