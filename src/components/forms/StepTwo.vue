@@ -1,6 +1,10 @@
 <template>
 <div class="step-two">
-    <CustomToggle v-model="isYearly"/>
+    <div class="billing-type-wrapper">
+        <span :class="{active: stepTwoStore.billingType === 1}">Monthly</span>
+        <CustomToggle v-model="isYearly"/>
+        <span :class="{active: stepTwoStore.billingType === 2}">Yearly</span>
+    </div>
 </div>
 </template>
 
@@ -29,7 +33,24 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.step-two {
+@use '@/assets/css/variables' as v;
 
+.step-two {
+    > .billing-type-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        justify-content: center;
+
+        > span {
+            font-size: 14px;
+            color: v.$Cool-gray;
+            font-weight: 600;
+
+            &.active {
+                color: v.$Marine-blue;
+            }
+        }
+    }
 }
 </style>
