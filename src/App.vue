@@ -21,7 +21,7 @@ export default {
     },
     data() {
         return {
-            currentStep: 1,
+            currentStep: 2,
             stepsListing: [
                 {title: "Personal info", description: "Please provide your name, email address, and phone number."},
                 {title: "Select your plan", description: "you have the option to monthly or yearly billing."},
@@ -41,9 +41,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import './assets/css/variables.scss';
-
+<style lang="scss">
 .website {
     width: 100%;
     height: 100vh;
